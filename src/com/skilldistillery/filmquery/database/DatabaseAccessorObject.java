@@ -114,17 +114,26 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	@Override
 	public Actor findActorById(int actorId) {
 		Actor actor = null;
+		String user = "student";
+		String pass = "student";
+		String sql = "SELECT * from actor WHERE actor.id = ?";
+		if (actorId <= 0) {
+			return null;
+		}
 		try {
-			String user = "student";
-			String pass = "student";
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT * from actor WHERE actor.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, actorId);
 			ResultSet actorResult = stmt.executeQuery();
 			while(actorResult.next()) {
+				actor = new Actor();
+				actor.setId(actorResult.getInt("id"));
 				actor.setFirstName(actorResult.getString("first_name"));
 				actor.setLastName(actorResult.getString("last_name"));
+				
+				actorResult.close();
+				stmt.close();
+				conn.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -135,12 +144,15 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
-		List<Actor> actors = new ArrayList<>();
+		List<Actor> actorsList = new ArrayList<>();
+		if (filmId <= 0 ) {
+			return null;
+		}
 		try {
 			String user = "student";
 			String pass = "student";
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT * FROM film \n" + 
+			String sql = "SELECT actor.id, actor.first_name, actor.last_name FROM film \n" + 
 					"JOIN film_actor ON film_actor.film_id = film.id \n" + 
 					"JOIN actor ON film_actor.actor_id = actor.id \n" + 
 					"WHERE film.id = ?";
@@ -148,18 +160,19 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setInt(1, filmId);
 			ResultSet actorResult = stmt.executeQuery();
 			while (actorResult.next()) {
-				Actor actor = new Actor(); 
-				actor.setId(actorResult.getInt("id"));
-				actor.setFirstName(actorResult.getString("first_name"));
-				actor.setLastName(actorResult.getString("last_name"));
-				actors.add(actor);
+//				Actor actor = new Actor(); 
+				int id = actorResult.getInt("id");
+				String firstName = actorResult.getString("first_name");
+				String lastName = actorResult.getString("last_name");
+				Actor actor = new Actor (id, firstName, lastName);
+				actorsList.add(actor);
 				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	
-		return actors;
+		return actorsList;
 	}
 
 	@Override

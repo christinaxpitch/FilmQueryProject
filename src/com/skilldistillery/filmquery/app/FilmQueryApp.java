@@ -33,7 +33,7 @@ public class FilmQueryApp {
 	}
 
 	private void startUserInterface(Scanner input) {
-		System.out.println("\uD83C\uDFA5 Welcome to the Film Lookup App! \uD83C\uDFA5");
+		System.out.println("\uD83C\uDFA5\uD83C\uDF9E Welcome to the Film Lookup App! \uD83C\uDFA5\uD83C\uDF9E");
 		System.out.println();
 
 		boolean keepGoing = true;
@@ -49,7 +49,8 @@ public class FilmQueryApp {
 				getFilmByKeyword(input);
 				break;
 			case 3: 
-				System.out.println("You have chosen to exit. --thank you--");
+				System.out.println("You have chosen to exit. GOODBYE");
+				System.out.println("\uD83C\uDFA5\t\uD83C\uDFA5\t\uD83C\uDFA5\t\uD83C\uDFA5\t\uD83C\uDFA5");
 				keepGoing= false;
 				break;
 			}
@@ -59,12 +60,12 @@ public class FilmQueryApp {
 	}
 
 	private void printMenu() {
-		System.out.println("*Please select a menu option*");
+		System.out.println("** Please select a menu option **");
 		System.out.println("1. Look up a film by its ID");
 		System.out.println("2. Look up a film by a search keyword.");
 		System.out.println("3. Exit the app. ");
 		System.out.println();
-		System.out.println("Please enter your selection (1-3): ");
+		System.out.println("Please enter a selection (1-3): ");
 		
 	}
 	
@@ -75,9 +76,9 @@ public class FilmQueryApp {
 
 		if (result != null) {
 			System.out.println("INFO FOR FILM " + filmId);
-			System.out.println("------------------------");
+			System.out.println("--------------------------");
 			result.printInfo();
-			System.out.println("------------------------");
+			System.out.println("--------------------------");
 			System.out.println();
 		} else {
 			System.out.println("There is no film by that film ID. Returning to main menu:");

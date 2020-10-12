@@ -227,6 +227,11 @@ public class Film {
 		System.out.println("Release year: " + releaseYear);
 		System.out.println("Rating: " + rating);
 		System.out.println("Language: " + language);
+		System.out.println();
+		System.out.println("*List of Actors: ");
+		for (Actor actor : actors) {
+			System.out.println(actor);
+		}
 	}
 
 	@Override
