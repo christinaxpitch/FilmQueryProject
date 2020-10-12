@@ -76,7 +76,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			String user = "student";
 			String pass = "student";
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT film.* FROM film WHERE film.title like ? or film.description like ?; ";
+			String sql = "SELECT film.* "
+					+ "FROM film "
+					+ "WHERE film.title "
+					+ "LIKE ? OR film.description "
+					+ "LIKE ?; ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + keyword + "%");
 			stmt.setString(2, "%" + keyword + "%");
@@ -180,7 +184,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		if (filmId <= 0) {
 			return null;
 		}
-		String sql = "select language.name from film join language on film.language_id=language.id where film.id = ?";
+		String sql = "SELECT language.name "
+				+ "FROM film "
+				+ "JOIN language "
+				+ "ON film.language_id=language.id "
+				+ "WHERE film.id = ?";
 		String language = "";
 		
 		String user = "student";
