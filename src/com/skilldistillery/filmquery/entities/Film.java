@@ -234,6 +234,22 @@ public class Film {
 		}
 	}
 
+//	stretch goal #1
+	public void printAllInfo() {
+		System.out.println("** ALL INFO **");
+		printInfo();
+		System.out.println();
+		System.out.println("Film ID: " + id);
+		System.out.println("Language ID " + languageId);
+		System.out.println("Length: " + length);
+		System.out.println("Replacement cost: " + replacementCost);
+		System.out.println("Special features: " + specialFeatures);
+		System.out.println("Rental Duration: " + rentalDuration);
+		System.out.println("Rental rate: " + rentalRate);
+			
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

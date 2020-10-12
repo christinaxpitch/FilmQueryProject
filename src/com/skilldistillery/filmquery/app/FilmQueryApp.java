@@ -80,6 +80,25 @@ public class FilmQueryApp {
 			result.printInfo();
 			System.out.println("--------------------------");
 			System.out.println();
+				boolean more = true;
+				while (more) {
+					System.out.println("1. View all film info");
+					System.out.println("2. Return to main menu");
+					int menu2 = input.nextInt();
+					switch (menu2) {
+					case 1: 
+						result.printAllInfo();
+						break;
+					case 2:
+						more= false;
+						break;
+					default:
+					System.out.println("Invalid menu selection");
+					}
+					
+				}
+			
+			
 		} else {
 			System.out.println("There is no film by that film ID. Returning to main menu:");
 			System.out.println();
@@ -103,7 +122,8 @@ public class FilmQueryApp {
 			System.out.println();
 			System.out.println("There are " + films.size() + " movies with the keyword '" + keyword+ "'");
 			System.out.println();
-			}
+			}		
+		
 			else {
 				System.out.println("No films with '" + keyword + "' exist in our database.");
 				System.out.println();
@@ -116,6 +136,6 @@ public class FilmQueryApp {
 		return null;
 
 	}
-	
+
 
 }
